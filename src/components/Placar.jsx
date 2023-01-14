@@ -1,8 +1,13 @@
+import { useJodoDaMemoria } from "../hooks/useJogoDaMemoria"
+
 export function Placar() {
+
+  const { quantidadeDeCartasViradas, quantidadeDePontos } = useJodoDaMemoria();
+
   return (
     <div className="placar">
-      <Pontos titulo="Pontos" valor={0}/>
-      <Pontos titulo="Cartas viradas" valor={0}/>
+      <Pontos titulo="Pontos" valor={quantidadeDePontos}/>
+      <Pontos titulo="Cartas viradas" valor={quantidadeDeCartasViradas}/>
     </div>
   ) 
 }

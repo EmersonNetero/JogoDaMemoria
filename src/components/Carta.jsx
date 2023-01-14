@@ -1,6 +1,14 @@
+import { useJodoDaMemoria } from "../hooks/useJogoDaMemoria"
+
 export function Carta({id, idDoPar, imagem}) {
+  const { virarCarta } = useJodoDaMemoria();
+
+  const controlarClick = () => {
+    virarCarta({ id, idDoPar });
+  }
+
   return (
-    <button id={id} className="carta">
+    <button id={id} className="carta" onClick={controlarClick}>
       <div className="carta__conteudo">
         <div className="carta__frente"></div>
         <div className="carta__costas">
