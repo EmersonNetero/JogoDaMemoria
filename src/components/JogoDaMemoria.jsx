@@ -2,8 +2,19 @@ import { Carta } from "./Carta";
 import { Placar } from "./Placar";
 import { paresDeCartas } from "../constants/cartas";
 import { Resultado } from "./Resultado";
+import { LogicaJogoDaMemoriaProvider } from "../contexts/LogicaJogoDaMemoria";
+
 
 export function JogoDaMemoria() {
+  return (
+    <LogicaJogoDaMemoriaProvider>
+      <JogoDaMemoriaConteudo />
+    </LogicaJogoDaMemoriaProvider>
+  )
+}
+
+
+export function JogoDaMemoriaConteudo() {
   return (
     <div className="jogo-da-memoria">
       <div className="jogo-da-memoria__conteudo">
