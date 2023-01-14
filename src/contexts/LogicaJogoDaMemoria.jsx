@@ -16,8 +16,24 @@ export function LogicaJogoDaMemoriaProvider({children}){
   }
 
   const virarCarta = ({id, idDoPar}) => {
+    const cartaJaVirada = idsCartasViradas.includes(id) || idsParesEncontrados.includes(idDoPar);
+    if (cartaJaVirada) return;
+    
     incrementarQuantidadeDeCartasViradas();
+
+    if (idsCartasViradas.length >= 2) {
+      return;
+    }
+    if (idsCartasViradas.length == 0) {
+      return setIdCartasViradas([id]);
+    }
     setIdCartasViradas((ids) => [...ids, id]);
+
+    const tempo = 1500;
+    setTimeout(() => {
+      setIdCartasViradas([])
+    }, tempo);
+
   }
 
   const valor = {
@@ -25,7 +41,8 @@ export function LogicaJogoDaMemoriaProvider({children}){
     quantidadeDeCartasViradas,
     quantidadeDePontos,
     virarCarta,
-    idsCartasViradas
+    idsCartasViradas,
+    idsParesEncontrados
   };
 
   return (
