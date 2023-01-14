@@ -1,6 +1,7 @@
 import { Carta } from "./Carta";
 import { Placar } from "./Placar";
 import { paresDeCartas } from "../constants/cartas";
+import { Resultado } from "./Resultado";
 
 export function JogoDaMemoria() {
   return (
@@ -12,6 +13,7 @@ export function JogoDaMemoria() {
           {paresDeCartas.map((carta) => <Carta key={carta.id} {...carta}/>)}
         </div>
       </div>
+      <Resultado />
     </div>
   )
 }
