@@ -17,6 +17,7 @@ export function LogicaJogoDaMemoriaProvider({children}){
 
   const virarCarta = ({id, idDoPar}) => {
     incrementarQuantidadeDeCartasViradas();
+    setIdCartasViradas((ids) => [...ids, id]);
   }
 
   const valor = {
@@ -24,6 +25,7 @@ export function LogicaJogoDaMemoriaProvider({children}){
     quantidadeDeCartasViradas,
     quantidadeDePontos,
     virarCarta,
+    idsCartasViradas
   };
 
   return (
