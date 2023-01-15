@@ -1,8 +1,8 @@
-import { useJodoDaMemoria } from "../hooks/useJogoDaMemoria"
+import { useJogoDaMemoria } from "../hooks/useJogoDaMemoria"
 
 export function Placar() {
 
-  const { quantidadeDeCartasViradas, quantidadeDePontos } = useJodoDaMemoria();
+  const { quantidadeDeCartasViradas, quantidadeDePontos } = useJogoDaMemoria();
 
   return (
     <div className="placar">

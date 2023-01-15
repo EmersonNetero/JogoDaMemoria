@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import { useJodoDaMemoria } from "../hooks/useJogoDaMemoria"
+import { useJogoDaMemoria } from "../hooks/useJogoDaMemoria"
 
 export function Carta({id, idDoPar, imagem}) {
-  const { virarCarta, idsCartasViradas, idsParesEncontrados } = useJodoDaMemoria();
+  const { virarCarta, idsCartasViradas, idsParesEncontrados } = useJogoDaMemoria();
 
   const controlarClick = () => {
     virarCarta({ id, idDoPar });
