@@ -25,6 +25,14 @@ export function LogicaJogoDaMemoriaProvider({children}){
     setCartas(paresDeCartas);
   }
 
+  const reiniciarJogo = () => {
+    iniciarJogo();
+    setIdsParesEncontrados([]);
+    setIdCartasViradas([]);
+    setQuantidadeDeCartasViradas(0);
+
+  }
+
   const compararCartas = ([id1, id2]) => {
     const idPar1 = cartas.find(({ id }) => id === id1)?.idDoPar;
     const idPar2 = cartas.find(({ id }) => id === id2)?.idDoPar;
@@ -66,6 +74,7 @@ export function LogicaJogoDaMemoriaProvider({children}){
     quantidadeDePontos,
     virarCarta,
     iniciarJogo,
+    reiniciarJogo,
     idsCartasViradas,
     idsParesEncontrados
   };

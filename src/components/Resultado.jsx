@@ -5,7 +5,7 @@ import { resultados } from "../constants/resultados";
 
 export function Resultado() {
 
-  const { idsParesEncontrados, cartas, quantidadeDeCartasViradas } = useJogoDaMemoria();
+  const { idsParesEncontrados, cartas, quantidadeDeCartasViradas, reiniciarJogo } = useJogoDaMemoria();
 
   const jogoFinalizou = cartas.length === idsParesEncontrados.length * 2;
 
@@ -28,7 +28,7 @@ export function Resultado() {
           <strong>Taxa de acertos: </strong>
           <span>{taxaDeAcertos.toFixed(0)}%</span>
         </p>
-        <button className="button">
+        <button className="button" onClick={reiniciarJogo}>
           Nova Partida
         </button>
         <p>
