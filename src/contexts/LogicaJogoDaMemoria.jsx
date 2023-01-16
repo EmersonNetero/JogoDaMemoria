@@ -1,5 +1,6 @@
 import { createContext, useState } from "react";
 import { paresDeCartas } from "../constants/cartas";
+import { PONTOS, TEMPO_MS } from "../constants/configuracoes";
 
 export const LogicaJogoDaMemoriaContext = createContext();
 
@@ -17,7 +18,7 @@ export function LogicaJogoDaMemoriaProvider({children}){
   };
 
   const incrementarPontos = () => {
-    setQuantidadeDePontos((pontos) => pontos + 5);
+    setQuantidadeDePontos((pontos) => pontos + PONTOS.ENCONTRAR_CARTA);
   };
 
   const iniciarJogo = () => {
@@ -27,7 +28,6 @@ export function LogicaJogoDaMemoriaProvider({children}){
   const compararCartas = ([id1, id2]) => {
     const idPar1 = cartas.find(({ id }) => id === id1)?.idDoPar;
     const idPar2 = cartas.find(({ id }) => id === id2)?.idDoPar;
-    console.log(id1, id2);
     return idPar1 === idPar2;
   }
 
@@ -53,8 +53,8 @@ export function LogicaJogoDaMemoriaProvider({children}){
       incrementarPontos();
       setIdsParesEncontrados((ids) => [...ids, idDoPar]);
     }
-    console.log("🚀 ~ file: LogicaJogoDaMemoria.jsx:52 ~ virarCarta ~ cartasIguais", cartasIguais);
-    const tempo = cartasIguais ? 0 : 1500;
+    
+    const tempo = cartasIguais ? 0 : TEMPO_MS.VIRAR_CARTAS;
     setTimeout(() => {
       setIdCartasViradas([])
     }, tempo);
