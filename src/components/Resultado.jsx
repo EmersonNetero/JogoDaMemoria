@@ -1,9 +1,11 @@
+import { useMemo } from "react";
 import { useJogoDaMemoria } from "../hooks/useJogoDaMemoria";
 import classNames from "classnames"
+import { resultados } from "../constants/resultados";
 
 export function Resultado() {
 
-  const { idsParesEncontrados, cartas } = useJogoDaMemoria();
+  const { idsParesEncontrados, cartas, quantidadeDeCartasViradas } = useJogoDaMemoria();
 
   const jogoFinalizou = cartas.length === idsParesEncontrados.length * 2;
 
@@ -11,15 +13,20 @@ export function Resultado() {
     "resultado--aberto": jogoFinalizou
   })
 
+  const taxaDeAcertos = cartas.length / quantidadeDeCartasViradas * 100; // porcentagem
+  const resultado = useMemo(() => {
+    return resultados.find(({ min }) => min < taxaDeAcertos);
+  }, [taxaDeAcertos]);
+
   return (
     <div className={cn}>
       <div className="resultado__caixa">
         <p>Seu nível de memória é:</p>
-        <h1>Bom</h1>
-        <img src="/kitekat-3.png" alt="Imagem referente ao nível de memória" height={150} />
+        <h1>{resultado?.titulo}</h1>
+        <img src={resultado?.imagem} alt="Imagem referente ao nível de memória" height={150} />
         <p>
           <strong>Taxa de acertos: </strong>
-          <span>60%</span>
+          <span>{taxaDeAcertos.toFixed(0)}%</span>
         </p>
         <button className="button">
           Nova Partida
