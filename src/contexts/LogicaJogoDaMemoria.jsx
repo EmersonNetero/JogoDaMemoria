@@ -1,12 +1,13 @@
 import { createContext, useState } from "react";
-import { paresDeCartas } from "../constants/cartas";
 import { PONTOS, TEMPO_MS } from "../constants/configuracoes";
+import { buscarCartas } from "../services/buscarCartasParaJogoDaMemoria";
 
 export const LogicaJogoDaMemoriaContext = createContext();
 
 export function LogicaJogoDaMemoriaProvider({children}){
 
   const [cartas, setCartas] = useState([]);
+  const [carregandoCartas, setCarregandoCartas] = useState(false); 
   const [idsParesEncontrados, setIdsParesEncontrados] = useState([]);
   const [idsCartasViradas, setIdCartasViradas] = useState([]);
 
@@ -21,8 +22,11 @@ export function LogicaJogoDaMemoriaProvider({children}){
     setQuantidadeDePontos((pontos) => pontos + PONTOS.ENCONTRAR_CARTA);
   };
 
-  const iniciarJogo = () => {
-    setCartas(paresDeCartas);
+  const iniciarJogo = async () => {
+    setCarregandoCartas(true);
+    const cartas = await buscarCartas(); 
+    setCartas(cartas);
+    setCarregandoCartas(false);
   }
 
   const reiniciarJogo = () => {
@@ -76,7 +80,8 @@ export function LogicaJogoDaMemoriaProvider({children}){
     iniciarJogo,
     reiniciarJogo,
     idsCartasViradas,
-    idsParesEncontrados
+    idsParesEncontrados,
+    carregandoCartas
   };
 
   return (
